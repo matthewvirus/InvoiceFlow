@@ -8,6 +8,7 @@ import com.invoiceflow.repository.UserRepository;
 import com.invoiceflow.service.InvoiceFlowService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,14 +19,17 @@ public class UserService implements InvoiceFlowService<UserDTO, UserCreateDTO, U
 
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public UserDTO create(UserCreateDTO userCreateDTO) {
         User user = UserMapper.toEntity(userCreateDTO);
+        user.setPassword(passwordEncoder.encode(userCreateDTO.getPassword()));
         log.info("Creating user: {}", user.getEmail());
         return UserMapper.toDTO(userRepository.save((user)));
     }

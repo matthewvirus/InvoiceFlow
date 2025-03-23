@@ -26,7 +26,7 @@ public class PaymentService implements InvoiceFlowService<PaymentDTO, PaymentCre
     @Override
     public PaymentDTO create(PaymentCreateDTO paymentCreateDTO) {
         Payment payment = PaymentMapper.toEntity(paymentCreateDTO);
-        log.info("Payment created: {}", payment.getId());
+        log.info("PaymentController created: {}", payment.getId());
         return PaymentMapper.toDTO(paymentRepository.save(payment));
     }
 
@@ -35,8 +35,8 @@ public class PaymentService implements InvoiceFlowService<PaymentDTO, PaymentCre
         log.info("Fetching payment by id: {}", id);
         return paymentRepository.findById(id).map(PaymentMapper::toDTO)
                 .orElseThrow(() -> {
-                    log.error("Payment with id {} not found!", id);
-                    return new RuntimeException("Payment not found!");
+                    log.error("PaymentController with id {} not found!", id);
+                    return new RuntimeException("PaymentController not found!");
                 });
     }
 
@@ -49,6 +49,6 @@ public class PaymentService implements InvoiceFlowService<PaymentDTO, PaymentCre
     @Override
     public void deleteById(UUID id) {
         paymentRepository.deleteById(id);
-        log.info("Payment with id {} deleted.", id);
+        log.info("PaymentController with id {} deleted.", id);
     }
 }

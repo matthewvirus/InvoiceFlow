@@ -3,6 +3,7 @@ package com.invoiceflow.controller;
 import com.invoiceflow.dto.user.UserCreateDTO;
 import com.invoiceflow.dto.user.UserDTO;
 import com.invoiceflow.service.impl.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +12,10 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/user")
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping
     public ResponseEntity<UserDTO> createUser(@RequestBody UserCreateDTO dto) {

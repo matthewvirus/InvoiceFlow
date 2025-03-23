@@ -3,6 +3,7 @@ package com.invoiceflow.controller;
 import com.invoiceflow.dto.payment.PaymentCreateDTO;
 import com.invoiceflow.dto.payment.PaymentDTO;
 import com.invoiceflow.service.impl.PaymentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +12,10 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/payment")
+@RequiredArgsConstructor
 public class PaymentController {
 
     private final PaymentService paymentService;
-
-    public PaymentController(PaymentService paymentService) {
-        this.paymentService = paymentService;
-    }
 
     @PostMapping
     public ResponseEntity<PaymentDTO> createPayment(@RequestBody PaymentCreateDTO dto) {

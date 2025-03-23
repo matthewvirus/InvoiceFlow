@@ -3,6 +3,7 @@ package com.invoiceflow.controller;
 import com.invoiceflow.dto.invoice.InvoiceCreateDTO;
 import com.invoiceflow.dto.invoice.InvoiceDTO;
 import com.invoiceflow.service.impl.InvoiceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +12,10 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/invoice")
+@RequiredArgsConstructor
 public class InvoiceController {
 
     private final InvoiceService invoiceService;
-
-    public InvoiceController(InvoiceService invoiceService) {
-        this.invoiceService = invoiceService;
-    }
 
     @PostMapping
     public ResponseEntity<InvoiceDTO> createInvoice(@RequestBody InvoiceCreateDTO dto) {

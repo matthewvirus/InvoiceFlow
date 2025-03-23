@@ -3,6 +3,7 @@ package com.invoiceflow.controller;
 import com.invoiceflow.dto.customer.CustomerCreateDTO;
 import com.invoiceflow.dto.customer.CustomerDTO;
 import com.invoiceflow.service.impl.CustomerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +12,10 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/customer")
+@RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
-
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
-    }
 
     @PostMapping
     public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerCreateDTO dto) {
