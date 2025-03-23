@@ -3,12 +3,12 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/invoiceflow
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: PsLwo
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: update # Позже лучше использовать миграции через Flyway вместо ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -21,4 +21,7 @@ logging:
     root: info
     com:
       invoiceflow: debug
-# Позже лучше использовать миграции через Flyway вместо ddl-auto: update
+
+jwt:
+  secret: TYxAOQtVgzvopjIdplDpdsL/vsbFBT9fSEs6EWckSPg=
+  expiration: 86400000
